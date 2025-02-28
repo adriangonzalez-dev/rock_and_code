@@ -7,19 +7,14 @@ const navLinks = [
 ];
 ---
 
-<header class="fixed w-full z-50 bg-[#121212]/95 shadow-lg" id="main-header">
+<header class="fixed w-full z-40 bg-[#121212]/95 shadow-lg" id="main-header">
   <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-    <!-- Logo/Nombre de la marca con efecto de contenedor rosa para "Mind" -->
+    <!-- Logo/Nombre de la marca con efecto de contenedor rosa para "Code" -->
     <a href="#" class="text-2xl md:text-3xl font-bold tracking-wider group flex items-center">
-        <!-- Importación de la fuente Rock Salt para el logo -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
-        
         <span class="font-rock-salt transition-colors duration-300 group-hover:text-white" style="color: #f5f5f5; font-family: 'Rock Salt', cursive;">Rock &</span>
         <span class="relative inline-block ml-1">
-          <span class="relative z-10 px-2" style="color: #121212; font-family: 'Rock Salt', cursive;">Code</span>
-          <span class="absolute inset-0 -skew-x-12 z-0 transition-all duration-300 group-hover:scale-110" style="background-color: #ff1493;"></span>
+          <span class="relative z-10 px-2 font-rock-salt" style="color: #121212; font-family: 'Rock Salt', cursive;">Code</span>
+          <span class="absolute inset-0 -skew-x-12 z-0 transition-all duration-300 group-hover:scale-105" style="background-color: #ff1493;"></span>
         </span>
     </a>
 
@@ -44,32 +39,40 @@ const navLinks = [
       </ul>
     </nav>
 
-    <!-- Botón de menú móvil simplificado -->
-    <button onclick="document.getElementById('mobile-menu').classList.toggle('translate-x-full'); document.getElementById('hamburger').classList.toggle('active')" class="md:hidden focus:outline-none relative w-8 h-6 z-50" aria-label="Menú" id="hamburger">
-      <span class="block absolute h-0.5 w-full left-0 top-0 transition-all duration-300" style="background-color: #f5f5f5;"></span>
-      <span class="block absolute h-0.5 w-full left-0 top-1/2 -translate-y-1/2 transition-all duration-300" style="background-color: #f5f5f5;"></span>
-      <span class="block absolute h-0.5 w-full left-0 bottom-0 transition-all duration-300" style="background-color: #f5f5f5;"></span>
+    <!-- Botón de menú móvil mejorado -->
+    <button 
+      id="hamburger-button"
+      class="md:hidden focus:outline-none relative w-10 h-10 z-20 rounded-full hover:bg-white/5 flex items-center justify-center" 
+      aria-label="Menú" 
+      aria-expanded="false"
+      type="button"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </div>
     </button>
   </div>
 
   <!-- Menú móvil con animaciones mejoradas -->
-  <div id="mobile-menu" class="fixed inset-0 w-full h-screen transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex justify-center items-center" style="background-color: rgba(18, 18, 18, 1);">
-    <div class="absolute inset-0 overflow-hidden opacity-20">
-      <div class="absolute w-96 h-96 rounded-full" style="background-color: #ff1493; top: -10%; left: -10%; filter: blur(80px);"></div>
-      <div class="absolute w-96 h-96 rounded-full" style="background-color: #ff1493; bottom: -15%; right: -15%; filter: blur(80px);"></div>
+  <div id="mobile-menu" class="fixed inset-0 w-full h-full mobile-menu-container flex justify-center items-center" style="background-color: rgba(18, 18, 18, 0.95);">
+    <div class="absolute inset-0 opacity-0 menu-bg-elements transition-opacity duration-500">
+      <!-- Elementos decorativos con mejor animación -->
+      <div class="absolute w-64 h-64 rounded-full menu-circle-1" style="background-color: #ff1493; top: 5%; left: 5%; filter: blur(60px);"></div>
+      <div class="absolute w-64 h-64 rounded-full menu-circle-2" style="background-color: #ff1493; bottom: 5%; right: 5%; filter: blur(60px);"></div>
     </div>
     
-    <nav class="text-center relative z-10">
-      <ul class="space-y-8">
-        {navLinks.map((link) => (
-          <li>
+    <nav class="text-center relative z-10 w-full">
+      <ul class="space-y-8 mobile-menu-items">
+        {navLinks.map((link, index) => (
+          <li class="menu-item" style={`--item-index: ${index};`}>
             <a 
               href={link.href} 
-              onclick="document.getElementById('mobile-menu').classList.add('translate-x-full'); document.getElementById('hamburger').classList.remove('active')"
               class="mobile-link text-3xl font-bold inline-block py-2 px-4 relative overflow-hidden group"
               style="color: #f5f5f5;"
             >
-              <span class="inline-block transition-transform duration-300 group-hover:scale-110">{link.text}</span>
+              <span class="inline-block transition-transform duration-300 group-hover:scale-105">{link.text}</span>
               <span class="absolute -left-2 top-1/2 transform -translate-y-1/2 w-0 h-8 group-hover:w-1 transition-all duration-300" style="background-color: #ff1493;"></span>
               <span class="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-500 ease-out" style="background-color: #ff1493;"></span>
             </a>
@@ -79,6 +82,9 @@ const navLinks = [
     </nav>
   </div>
 </header>
+
+<!-- Espaciador para compensar la altura del header fixed -->
+<div id="header-spacer" class="w-full"></div>
 
 <style>
   /* Efecto activo para links desktop */
@@ -91,69 +97,272 @@ const navLinks = [
     transform: translateY(0);
   }
   
+  /* Estilos mejorados para el botón hamburguesa */
+  .hamburger-icon {
+    position: relative;
+    width: 24px;
+    height: 18px;
+  }
+  
+  .hamburger-line {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    border-radius: 1px;
+    background-color: #f5f5f5;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    will-change: transform, opacity;
+  }
+  
+  .line-1 {
+    top: 0;
+  }
+  
+  .line-2 {
+    top: 8px;
+    width: 80%;
+    right: 0;
+    left: auto;
+  }
+  
+  .line-3 {
+    top: 16px;
+  }
+  
   /* Animación del hamburger cuando está activo */
-  #hamburger.active span:first-child {
-    transform: rotate(45deg);
-    top: 50%;
-    margin-top: -1px;
+  #hamburger-button.active .line-1 {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #ff1493;
   }
   
-  #hamburger.active span:nth-child(2) {
+  #hamburger-button.active .line-2 {
     opacity: 0;
+    transform: translateX(20px);
+    background-color: #ff1493;
   }
   
-  #hamburger.active span:last-child {
-    transform: rotate(-45deg);
-    bottom: 50%;
-    margin-bottom: -1px;
+  #hamburger-button.active .line-3 {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: #ff1493;
+  }
+  
+  /* Estilos y animaciones del menú móvil */
+  .mobile-menu-container {
+    clip-path: circle(0% at calc(100% - 40px) 40px);
+    visibility: hidden;
+    transition: clip-path 0.5s ease-in-out, visibility 0s 0.5s;
+    pointer-events: none;
+  }
+  
+  .mobile-menu-container.visible {
+    clip-path: circle(150% at calc(100% - 40px) 40px);
+    visibility: visible;
+    transition: clip-path 0.5s ease-in-out, visibility 0s 0s;
+    pointer-events: auto;
+  }
+  
+  .mobile-menu-container.visible .menu-bg-elements {
+    opacity: 0.2;
+  }
+  
+  /* Animación para los círculos decorativos */
+  .menu-circle-1, .menu-circle-2 {
+    transform: scale(0.5);
+    opacity: 0;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  .mobile-menu-container.visible .menu-circle-1 {
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.1s;
+  }
+  
+  .mobile-menu-container.visible .menu-circle-2 {
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.2s;
+  }
+  
+  /* Animación para los elementos del menú */
+  .menu-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    transition-delay: calc(var(--item-index) * 0.1s);
+    will-change: transform, opacity;
+  }
+  
+  .mobile-menu-container.visible .menu-item {
+    opacity: 1;
+    transform: translateY(0);
   }
   
   /* Para controlar el scroll */
-  body.menu-open {
-    overflow: hidden;
+  :global(body.menu-open) {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
   
-  @keyframes shimmer {
-    0% {
-      background-position: -100% 0;
+  /* Optimizaciones para dispositivos de bajos recursos */
+  @media (max-width: 768px) {
+    .menu-circle-1, .menu-circle-2 {
+      filter: blur(30px) !important; /* Reducir el nivel de blur */
     }
-    100% {
-      background-position: 200% 0;
+  }
+  
+  /* Clase que se añade mediante JS para dispositivos de bajos recursos */
+  :global(.low-power-device) .menu-circle-1,
+  :global(.low-power-device) .menu-circle-2 {
+    filter: blur(20px) !important;
+    transition-duration: 0.4s !important;
+  }
+  
+  :global(.low-power-device) .hamburger-line,
+  :global(.low-power-device) .menu-item {
+    transition-duration: 0.25s !important;
+  }
+  
+  :global(.low-power-device) .mobile-menu-container {
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Mejoras de rendimiento para dispositivos de bajos recursos */
+  @media (prefers-reduced-motion: reduce) {
+    .hamburger-line,
+    .menu-item,
+    .menu-circle-1,
+    .menu-circle-2,
+    .mobile-menu-container {
+      transition-duration: 0.2s !important;
+    }
+    
+    .mobile-menu-container.visible .menu-circle-1,
+    .mobile-menu-container.visible .menu-circle-2 {
+      transition-delay: 0s !important;
+    }
+    
+    .menu-item {
+      transition-delay: 0s !important;
     }
   }
 </style>
 
-<script is:inline>
-  // Script mínimo solo para manejar el bloqueo del scroll
-  document.getElementById('hamburger').addEventListener('click', function() {
-    document.body.classList.toggle('menu-open');
-  });
-  
-  // Asegurarse de que los enlaces también restablezcan el scroll
-  document.querySelectorAll('.mobile-link').forEach(function(link) {
-    link.addEventListener('click', function() {
-      document.body.classList.remove('menu-open');
-    });
-  });
-  
-  // Establecer la clase active en el link según la sección visible
-  window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section[id]');
-    let scrollPosition = window.scrollY + 100;
+<script>
+  // Script mejorado para manejar la navegación y el menú móvil
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerButton = document.getElementById('hamburger-button') as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById('mobile-menu') as HTMLDivElement | null;
+    const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('.mobile-link');
+    const headerSpacer = document.getElementById('header-spacer') as HTMLDivElement | null;
+    const mainHeader = document.getElementById('main-header') as HTMLElement | null;
     
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + sectionId) {
-            link.classList.add('active');
-          }
-        });
+    // Ajustar la altura del espaciador al tamaño del header
+    function adjustHeaderSpacer(): void {
+      if (headerSpacer && mainHeader) {
+        headerSpacer.style.height = `${mainHeader.offsetHeight}px`;
       }
-    });
+    }
+    
+    // Ajustar en carga inicial y al cambiar el tamaño de ventana
+    adjustHeaderSpacer();
+    window.addEventListener('resize', adjustHeaderSpacer);
+    
+    // Función para alternar el menú móvil
+    function toggleMobileMenu(): void {
+      if (mobileMenu) {
+        mobileMenu.classList.toggle('visible');
+        hamburgerButton?.classList.toggle('active');
+        hamburgerButton?.setAttribute('aria-expanded', 
+          hamburgerButton.classList.contains('active') ? 'true' : 'false');
+        document.body.classList.toggle('menu-open');
+      }
+    }
+    
+    // Agregar evento al botón hamburger
+    if (hamburgerButton) {
+      hamburgerButton.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // Agregar eventos a los enlaces móviles
+    if (mobileLinks) {
+      mobileLinks.forEach(function(link: HTMLAnchorElement) {
+        link.addEventListener('click', toggleMobileMenu);
+      });
+    }
+    
+    // Función optimizada para activar enlaces de navegación
+    function throttle<T extends (...args: any[]) => void>(func: T, wait: number): (...args: Parameters<T>) => void {
+      let timeout: number | null = null;
+      let previous = 0;
+      
+      return function(this: any, ...args: Parameters<T>): void {
+        const now = Date.now();
+        const remaining = wait - (now - previous);
+        const context = this;
+        
+        if (remaining <= 0) {
+          if (timeout !== null) {
+            clearTimeout(timeout);
+            timeout = null;
+          }
+          previous = now;
+          func.apply(context, args);
+        } else if (timeout === null) {
+          timeout = window.setTimeout(function() {
+            previous = Date.now();
+            timeout = null;
+            func.apply(context, args);
+          }, remaining);
+        }
+      };
+    }
+    
+    // Activar link de navegación según la sección visible
+    function activateNavLinks(): void {
+      const sections = document.querySelectorAll<HTMLElement>('section[id]');
+      let scrollPosition = window.scrollY + (mainHeader ? mainHeader.offsetHeight + 20 : 100);
+      
+      sections.forEach((section: HTMLElement) => {
+        if (!section) return;
+        
+        const sectionTop: number = section.offsetTop;
+        const sectionHeight: number = section.offsetHeight;
+        const sectionId: string | null = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          document.querySelectorAll<HTMLAnchorElement>('.nav-link').forEach((link: HTMLAnchorElement) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + sectionId) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+    
+    // Aplicar throttling al evento de scroll para mejor rendimiento
+    const throttledActivateNavLinks = throttle(activateNavLinks, 100);
+    
+    // Activar al cargar
+    activateNavLinks();
+    
+    // Usar la versión throttled para el scroll
+    window.addEventListener('scroll', throttledActivateNavLinks);
+    
+    // Detectar si es un dispositivo de bajos recursos para optimizar rendimiento
+    const isLowPowerDevice: boolean = 
+      ('hardwareConcurrency' in navigator && navigator.hardwareConcurrency <= 4) || 
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+    // Ajustar transiciones para dispositivos de bajos recursos
+    if (isLowPowerDevice && document.documentElement) {
+      document.documentElement.classList.add('low-power-device');
+    }
   });
 </script>

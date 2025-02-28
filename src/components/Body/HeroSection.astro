@@ -1,93 +1,117 @@
-<section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden">
-    <!-- Fondo con partículas/grid -->
-    <div class="absolute inset-0" style="background-color: #121212;">
-      <div class="absolute inset-0 opacity-10">
-        <div class="w-full h-full" style="background-image: linear-gradient(#f5f5f5 1px, transparent 1px), linear-gradient(to right, #f5f5f5 1px, transparent 1px); background-size: 30px 30px;"></div>
-      </div>
-      
-      <!-- Elementos decorativos con efecto parallax -->
-      <div id="parallax-container" class="absolute inset-0 overflow-hidden">
-        <div class="parallax-circle absolute w-64 h-64 rounded-full opacity-20" 
-             style="background-color: #ff1493; top: 15%; left: 10%; filter: blur(60px);" 
-             data-depth="0.2"></div>
-        <div class="parallax-circle absolute w-48 h-48 rounded-full opacity-15" 
-             style="background-color: #ff1493; bottom: 20%; right: 15%; filter: blur(50px);" 
-             data-depth="0.3"></div>
-        <div class="parallax-shape absolute w-32 h-32 opacity-10" 
-             style="background-color: #f5f5f5; top: 35%; right: 25%; transform: rotate(45deg);" 
-             data-depth="0.1"></div>
-      </div>
+<section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden pt-header">
+  <!-- Fondo con partículas/grid -->
+  <div class="absolute inset-0" style="background-color: #121212;">
+    <div class="absolute inset-0 opacity-10">
+      <div class="w-full h-full" style="background-image: linear-gradient(#f5f5f5 1px, transparent 1px), linear-gradient(to right, #f5f5f5 1px, transparent 1px); background-size: 30px 30px;"></div>
     </div>
     
-    <!-- Contenido principal del hero -->
-    <div class="container mx-auto px-4 py-16 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
-      <div class="max-w-3xl mx-auto">
-        <h1 class="font-bold mb-8 tracking-tight">
-          <span class="inline-block mb-4 text-5xl md:text-7xl font-rock-salt" style="color: #f5f5f5; font-family: 'Rock Salt', cursive;">Rock &</span>
-          <div class="relative inline-block mt-2">
-            <span class="relative z-10 px-6 py-3 text-5xl md:text-7xl font-rock-salt" style="color: #121212; font-family: 'Rock Salt', cursive;">Code</span>
-            <span class="absolute inset-0 transform -skew-x-12" style="background-color: #ff1493;"></span>
-          </div>
-        </h1>
-        
-        <p class="text-xl md:text-2xl mb-12 mt-10 leading-relaxed mx-auto max-w-2xl" style="color: #f5f5f5;">
-          Transformamos ideas en soluciones digitales a medida para llevar tu empresa al siguiente nivel
-        </p>
-        
-        <div class="flex flex-col sm:flex-row justify-center gap-5 mt-8">
-          <a href="#servicios" class="group px-8 py-4 text-lg font-bold rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg" style="background-color: #ff1493; color: #f5f5f5;">
-            <span class="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-1">Nuestros Servicios</span>
-          </a>
-          <a href="#contacto" class="group px-8 py-4 text-lg font-bold rounded-md transition-all duration-300 transform hover:scale-105 hover:bg-opacity-10 shadow-lg overflow-hidden" style="border: 2px solid #ff1493; color: #ff1493; background-color: rgba(255, 20, 147, 0.05);">
-            <span class="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-1">Contáctanos</span>
-            <span class="absolute inset-0 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 opacity-20" style="background-color: #ff1493;"></span>
-          </a>
+    <!-- Elementos decorativos con efecto parallax -->
+    <div id="parallax-container" class="absolute inset-0 overflow-hidden">
+      <div class="parallax-circle absolute w-64 h-64 rounded-full opacity-20" 
+           style="background-color: #ff1493; top: 15%; left: 10%; filter: blur(60px);" 
+           data-depth="0.2"></div>
+      <div class="parallax-circle absolute w-48 h-48 rounded-full opacity-15" 
+           style="background-color: #ff1493; bottom: 20%; right: 15%; filter: blur(50px);" 
+           data-depth="0.3"></div>
+      <div class="parallax-shape absolute w-32 h-32 opacity-10" 
+           style="background-color: #f5f5f5; top: 35%; right: 25%; transform: rotate(45deg);" 
+           data-depth="0.1"></div>
+    </div>
+  </div>
+  
+  <!-- Contenido principal del hero -->
+  <div class="container mx-auto px-4 py-16 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="font-bold mb-8 tracking-tight">
+        <span class="inline-block mb-4 text-5xl md:text-7xl font-rock-salt" style="color: #f5f5f5; font-family: 'Rock Salt', cursive;">Rock &</span>
+        <div class="relative inline-block mt-2">
+          <span class="relative z-10 px-6 py-3 text-5xl md:text-7xl font-rock-salt" style="color: #121212; font-family: 'Rock Salt', cursive;">Code</span>
+          <span class="absolute inset-0 transform -skew-x-12" style="background-color: #ff1493;"></span>
         </div>
-      </div>
+      </h1>
       
-      <!-- Flecha indicadora de scroll con animación -->
-      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce">
-        <a href="#servicios" class="block transition-transform hover:translate-y-1">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#f5f5f5" class="w-10 h-10">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-          </svg>
+      <p class="text-xl md:text-2xl mb-12 mt-10 leading-relaxed mx-auto max-w-2xl" style="color: #f5f5f5;">
+        Transformamos ideas en soluciones digitales a medida para llevar tu empresa al siguiente nivel
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-5 mt-8">
+        <a href="#servicios" class="group px-8 py-4 text-lg font-bold rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg" style="background-color: #ff1493; color: #f5f5f5;">
+          <span class="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-1">Nuestros Servicios</span>
+        </a>
+        <a href="#contacto" class="group px-8 py-4 text-lg font-bold rounded-md transition-all duration-300 transform hover:scale-105 hover:bg-opacity-10 shadow-lg overflow-hidden" style="border: 2px solid #ff1493; color: #ff1493; background-color: rgba(255, 20, 147, 0.05);">
+          <span class="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-1">Contáctanos</span>
+          <span class="absolute inset-0 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 opacity-20" style="background-color: #ff1493;"></span>
         </a>
       </div>
     </div>
     
-    <!-- Elementos decorativos musicales -->
-    <div class="absolute w-12 h-12 opacity-20 top-1/4 left-1/4 animate-pulse" style="transform: rotate(15deg);">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff1493">
-        <path d="M19.952 1.651a.75.75 0 01.298.599V16.303a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.403-4.909l2.311-.66a1.5 1.5 0 001.088-1.442V6.994l-9 2.572v9.737a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.402-4.909l2.31-.66a1.5 1.5 0 001.088-1.442V9.017 5.25a.75.75 0 01.544-.721l10.5-3a.75.75 0 01.658.122z" />
-      </svg>
+    <!-- Flecha indicadora de scroll con animación -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce">
+      <a href="#servicios" class="block transition-transform hover:translate-y-1">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#f5f5f5" class="w-10 h-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+        </svg>
+      </a>
     </div>
-    
-    <div class="absolute w-10 h-10 opacity-15 bottom-1/4 right-1/3 animate-pulse" style="animation-delay: 1s; transform: rotate(-10deg);">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff1493">
-        <path fill-rule="evenodd" d="M19.952 1.651a.75.75 0 01.298.599V16.303a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.403-4.909l2.311-.66a1.5 1.5 0 001.088-1.442V6.994l-9 2.572v9.737a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.402-4.909l2.31-.66a1.5 1.5 0 001.088-1.442V9.017 5.25a.75.75 0 01.544-.721l10.5-3a.75.75 0 01.658.122z" clip-rule="evenodd" />
-      </svg>
-    </div>
-  </section>
+  </div>
   
-  <style>
-    /* Estilos adicionales para la animación del logo Rock & Code */
-    @keyframes pulseGlow {
-      0%, 100% {
-        filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0));
-      }
-      50% {
-        filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.5));
-      }
+  <!-- Elementos decorativos musicales -->
+  <div class="absolute w-12 h-12 opacity-20 top-1/4 left-1/4 animate-pulse" style="transform: rotate(15deg);">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff1493">
+      <path d="M19.952 1.651a.75.75 0 01.298.599V16.303a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.403-4.909l2.311-.66a1.5 1.5 0 001.088-1.442V6.994l-9 2.572v9.737a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.402-4.909l2.31-.66a1.5 1.5 0 001.088-1.442V9.017 5.25a.75.75 0 01.544-.721l10.5-3a.75.75 0 01.658.122z" />
+    </svg>
+  </div>
+  
+  <div class="absolute w-10 h-10 opacity-15 bottom-1/4 right-1/3 animate-pulse" style="animation-delay: 1s; transform: rotate(-10deg);">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff1493">
+      <path fill-rule="evenodd" d="M19.952 1.651a.75.75 0 01.298.599V16.303a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.403-4.909l2.311-.66a1.5 1.5 0 001.088-1.442V6.994l-9 2.572v9.737a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.402-4.909l2.31-.66a1.5 1.5 0 001.088-1.442V9.017 5.25a.75.75 0 01.544-.721l10.5-3a.75.75 0 01.658.122z" clip-rule="evenodd" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  /* Añadir espacio para el header */
+  .pt-header {
+    padding-top: var(--header-height, 72px); /* Valor por defecto en caso de que la variable no se defina */
+  }
+  
+  /* Estilos adicionales para la animación del logo Rock & Code */
+  @keyframes pulseGlow {
+    0%, 100% {
+      filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0));
     }
-    
+    50% {
+      filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.5));
+    }
+  }
+  
+  .font-rock-salt {
+    animation: pulseGlow 3s infinite;
+    letter-spacing: 1px;
+  }
+  
+  @media (max-width: 768px) {
     .font-rock-salt {
-      animation: pulseGlow 3s infinite;
-      letter-spacing: 1px;
+      letter-spacing: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Obtener la altura del header y establecerla como variable CSS
+    const header = document.getElementById('main-header');
+    if (header) {
+      const headerHeight = header.offsetHeight;
+      document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
     }
     
-    @media (max-width: 768px) {
-      .font-rock-salt {
-        letter-spacing: 0;
+    // Actualizar al cambiar el tamaño de la ventana
+    window.addEventListener('resize', function() {
+      if (header) {
+        const headerHeight = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
       }
-    }
-  </style>
+    });
+  });
+</script>
