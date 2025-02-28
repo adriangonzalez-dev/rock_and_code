@@ -1,0 +1,159 @@
+---
+// Define los enlaces de navegación (reducidos a las secciones que tendrás)
+const navLinks = [
+  { text: "Inicio", href: "#hero" },
+  { text: "Servicios", href: "#servicios" },
+  { text: "Contacto", href: "#contacto" },
+];
+---
+
+<header class="fixed w-full z-50 bg-[#121212]/95 shadow-lg" id="main-header">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Logo/Nombre de la marca con efecto de contenedor rosa para "Mind" -->
+    <a href="#" class="text-2xl md:text-3xl font-bold tracking-wider group flex items-center">
+        <!-- Importación de la fuente Rock Salt para el logo -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+        
+        <span class="font-rock-salt transition-colors duration-300 group-hover:text-white" style="color: #f5f5f5; font-family: 'Rock Salt', cursive;">Rock &</span>
+        <span class="relative inline-block ml-1">
+          <span class="relative z-10 px-2" style="color: #121212; font-family: 'Rock Salt', cursive;">Code</span>
+          <span class="absolute inset-0 -skew-x-12 z-0 transition-all duration-300 group-hover:scale-110" style="background-color: #ff1493;"></span>
+        </span>
+    </a>
+
+    <!-- Navegación Desktop -->
+    <nav class="hidden md:block">
+      <ul class="flex space-x-10">
+        {navLinks.map((link) => (
+          <li>
+            <a 
+              href={link.href} 
+              class="nav-link text-lg font-medium py-2 px-1 relative group flex items-center"
+              style="color: #f5f5f5;"
+            >
+              <span class="relative overflow-hidden inline-block pb-1">
+                {link.text}
+                <span class="link-effect absolute left-0 bottom-0 w-full h-0.5 -translate-x-full group-hover:translate-x-0 transition-transform duration-300" style="background-color: #ff1493;"></span>
+              </span>
+              <span class="ml-1 text-xs opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" style="color: #ff1493;">•</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Botón de menú móvil simplificado -->
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('translate-x-full'); document.getElementById('hamburger').classList.toggle('active')" class="md:hidden focus:outline-none relative w-8 h-6 z-50" aria-label="Menú" id="hamburger">
+      <span class="block absolute h-0.5 w-full left-0 top-0 transition-all duration-300" style="background-color: #f5f5f5;"></span>
+      <span class="block absolute h-0.5 w-full left-0 top-1/2 -translate-y-1/2 transition-all duration-300" style="background-color: #f5f5f5;"></span>
+      <span class="block absolute h-0.5 w-full left-0 bottom-0 transition-all duration-300" style="background-color: #f5f5f5;"></span>
+    </button>
+  </div>
+
+  <!-- Menú móvil con animaciones mejoradas -->
+  <div id="mobile-menu" class="fixed inset-0 w-full h-screen transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex justify-center items-center" style="background-color: rgba(18, 18, 18, 0.98);">
+    <div class="absolute inset-0 overflow-hidden opacity-20">
+      <div class="absolute w-96 h-96 rounded-full" style="background-color: #ff1493; top: -10%; left: -10%; filter: blur(80px);"></div>
+      <div class="absolute w-96 h-96 rounded-full" style="background-color: #ff1493; bottom: -15%; right: -15%; filter: blur(80px);"></div>
+    </div>
+    
+    <nav class="text-center relative z-10">
+      <ul class="space-y-8">
+        {navLinks.map((link) => (
+          <li>
+            <a 
+              href={link.href} 
+              onclick="document.getElementById('mobile-menu').classList.add('translate-x-full'); document.getElementById('hamburger').classList.remove('active')"
+              class="mobile-link text-3xl font-bold inline-block py-2 px-4 relative overflow-hidden group"
+              style="color: #f5f5f5;"
+            >
+              <span class="inline-block transition-transform duration-300 group-hover:scale-110">{link.text}</span>
+              <span class="absolute -left-2 top-1/2 transform -translate-y-1/2 w-0 h-8 group-hover:w-1 transition-all duration-300" style="background-color: #ff1493;"></span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-500 ease-out" style="background-color: #ff1493;"></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Efecto activo para links desktop */
+  .nav-link.active .link-effect {
+    transform: translateX(0);
+  }
+  
+  .nav-link.active .ml-1 {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación del hamburger cuando está activo */
+  #hamburger.active span:first-child {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -1px;
+  }
+  
+  #hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  #hamburger.active span:last-child {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -1px;
+  }
+  
+  /* Para controlar el scroll */
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Script mínimo solo para manejar el bloqueo del scroll
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.body.classList.toggle('menu-open');
+  });
+  
+  // Asegurarse de que los enlaces también restablezcan el scroll
+  document.querySelectorAll('.mobile-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.body.classList.remove('menu-open');
+    });
+  });
+  
+  // Establecer la clase active en el link según la sección visible
+  window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('section[id]');
+    let scrollPosition = window.scrollY + 100;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + sectionId) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  });
+</script>

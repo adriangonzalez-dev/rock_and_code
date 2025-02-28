@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  items: string[];
+  icon: string;
+  iconPath: string;
+  delay?: number;
+}
+
+const { title, description, items, icon, iconPath, delay = 100 } = Astro.props;
+---
+
+<div class="group rounded-xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 hover:shadow-xl relative bg-white" data-aos="fade-up" data-aos-delay={delay}>
+  <!-- Fondo decorativo esquina superior derecha -->
+  <div class="absolute top-0 right-0 w-24 h-24 opacity-10 transition-opacity duration-300 group-hover:opacity-20">
+    <div class="absolute top-0 right-0 w-full h-full rounded-bl-[100px]" style="background-color: #ff1493;"></div>
+  </div>
+  
+  <!-- Fondo decorativo esquina inferior izquierda -->
+  <div class="absolute bottom-0 left-0 w-24 h-24 opacity-5 transition-opacity duration-300 group-hover:opacity-10">
+    <div class="absolute bottom-0 left-0 w-full h-full rounded-tr-[100px]" style="background-color: #ff1493;"></div>
+  </div>
+  
+  <!-- Borde superior con gradiente animado al hover -->
+  <div class="absolute h-1 w-0 left-0 top-0 group-hover:w-full transition-all duration-700 ease-out" style="background: linear-gradient(90deg, transparent, #ff1493, transparent);"></div>
+  
+  <div class="h-full flex flex-col relative z-10">
+    <div class="p-8 pb-0">
+      <!-- Ícono con efecto de brillo al hover -->
+      <div class="relative mb-8">
+        <div class="w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 relative z-10" style="background-color: rgba(255, 20, 147, 0.12);">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-8 h-8 transition-all duration-500 group-hover:rotate-[360deg]" style="color: #ff1493;">
+            <path stroke-linecap="round" stroke-linejoin="round" d={iconPath} />
+          </svg>
+        </div>
+        <!-- Efecto de brillo detrás del ícono -->
+        <div class="absolute inset-0 w-16 h-16 rounded-xl opacity-0 group-hover:opacity-70 blur-xl transition-all duration-700" style="background-color: rgba(255, 20, 147, 0.3);"></div>
+      </div>
+      
+      <!-- Título con efecto de subrayado al hover -->
+      <div class="relative inline-block mb-4">
+        <h3 class="text-2xl font-bold" style="color: #121212;">{title}</h3>
+        <div class="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out" style="background-color: #ff1493;"></div>
+      </div>
+      
+      <!-- Descripción con mejor contraste -->
+      <p class="mb-8 leading-relaxed" style="color: #555;">
+        {description}
+      </p>
+    </div>
+    
+    <!-- Lista de características con animación de entrada -->
+    <div class="mt-auto p-8 pt-0">
+      <ul class="mt-4 space-y-3">
+        {items.map((item, index) => (
+          <li class="flex items-start transform translate-y-3 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all" style={`transition-delay: ${index * 75 + 100}ms`}>
+            <span class="mr-3 mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style="background-color: rgba(255, 20, 147, 0.15);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3" style="color: #ff1493;">
+                <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            <span class="leading-tight" style="color: #555;">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,69 @@
+---
+import CardService from "./CardService.astro"
+
+const services = [
+  {
+    title: "Desarrollo Web",
+    description: "Sitios y aplicaciones web modernas, responsivas y optimizadas para buscadores que convierten visitantes en clientes.",
+    items: ["Sitios corporativos", "Aplicaciones web", "E-commerce"],
+    icon: "desktop",
+    iconPath: "M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25",
+    delay: 100
+  },
+  {
+    title: "Aplicaciones Móviles",
+    description: "Apps nativas y multiplataforma con experiencias de usuario excepcionales que mantienen a tus usuarios comprometidos.",
+    items: ["iOS y Android", "Multiplataforma (React Native)", "Integración con APIs"],
+    icon: "mobile",
+    iconPath: "M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3",
+    delay: 200
+  },
+  {
+    title: "Bases de Datos y API",
+    description: "Diseñamos e implementamos sistemas de datos robustos y APIs escalables para que tu negocio funcione sin interrupciones.",
+    items: ["Arquitectura de datos", "REST APIs y GraphQL", "Integración de sistemas"],
+    icon: "database",
+    iconPath: "M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125",
+    delay: 300
+  },
+  {
+    title: "IA y Notificaciones",
+    description: "Desarrollo de software a medida potenciado con inteligencia artificial e integraciones con plataformas de notificaciones para maximizar la automatización.",
+    items: ["Integración con modelos IA", "Notificaciones (Discord, Slack)", "Automatización de procesos"],
+    icon: "sparkles",
+    iconPath: "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z",
+    delay: 400
+  }
+];
+---
+
+<!-- Sección Servicios mejorada con 4 tarjetas -->
+<section id="servicios" class="py-24 relative" style="background-color: #f5f5f5;">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-20" data-aos="fade-up">
+        <h2 class="text-4xl md:text-5xl font-bold relative inline-block">
+          <span style="color: #121212;">Nuestros </span>
+          <span class="relative z-10">
+            <span style="color: #ff1493;">Servicios</span>
+            <span class="absolute bottom-1 left-0 w-full h-3 opacity-30" style="background-color: #ff1493; z-index: -1;"></span>
+          </span>
+        </h2>
+        <p class="text-xl max-w-3xl mx-auto mt-6" style="color: #666;">
+          Soluciones tecnológicas personalizadas para impulsar tu negocio
+        </p>
+      </div>
+      
+      <div class={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${services.length} gap-6 md:gap-8 mt-12`}>
+        {
+          services.map(service=> <CardService 
+              title={service.title} 
+              description={service.description} 
+              items={service.items}
+              icon={service.icon}
+              iconPath={service.iconPath}
+              delay={service.delay}
+              />)
+        }
+      </div>
+    </div>
+  </section>

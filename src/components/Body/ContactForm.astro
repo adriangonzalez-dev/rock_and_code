@@ -1,0 +1,110 @@
+<div class="md:col-span-3 bg-white/5 backdrop-blur-sm rounded-lg p-6 md:p-8 shadow-lg" data-aos="fade-left">
+    <form id="contact-form" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block text-sm font-medium mb-2 opacity-90">Nombre</label>
+          <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff1493]/50 transition-all" placeholder="Tu nombre">
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium mb-2 opacity-90">Email</label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff1493]/50 transition-all" placeholder="tu@email.com">
+        </div>
+      </div>
+      
+      <div>
+        <label for="subject" class="block text-sm font-medium mb-2 opacity-90">Asunto</label>
+        <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff1493]/50 transition-all" placeholder="Asunto de tu mensaje">
+      </div>
+      
+      <div>
+        <label for="message" class="block text-sm font-medium mb-2 opacity-90">Mensaje</label>
+        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff1493]/50 transition-all" placeholder="¿Cómo podemos ayudarte?"></textarea>
+      </div>
+      
+      <!-- Estado de envío -->
+      <div id="form-status" class="hidden transition-all duration-300">
+        <div id="success-message" class="hidden py-3 px-4 rounded-md text-center" style="background-color: rgba(0, 200, 83, 0.1); color: #00c853;">
+          Mensaje enviado con éxito. ¡Nos pondremos en contacto contigo pronto!
+        </div>
+        <div id="error-message" class="hidden py-3 px-4 rounded-md text-center" style="background-color: rgba(255, 20, 147, 0.1); color: #ff1493;">
+          Ocurrió un error al enviar el mensaje. Por favor, intenta nuevamente.
+        </div>
+      </div>
+      
+      <div>
+        <button type="submit" id="submit-button" class="w-full group relative overflow-hidden rounded-md px-6 py-4 font-bold transition-all" style="background-color: #ff1493; color: #ffffff;">
+          <span class="relative z-10 group-hover:text-white transition-colors duration-300">Enviar Mensaje</span>
+          <span class="absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" style="background-color: #d01580;"></span>
+        </button>
+        <!-- Spinner para estado de carga -->
+        <div id="loading-spinner" class="hidden w-full text-center py-4">
+          <svg class="animate-spin mx-auto h-6 w-6" style="color: #ff1493;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contact-form');
+      const submitButton = document.getElementById('submit-button');
+      const loadingSpinner = document.getElementById('loading-spinner');
+      const formStatus = document.getElementById('form-status');
+      const successMessage = document.getElementById('success-message');
+      const errorMessage = document.getElementById('error-message');
+      
+      if (form) {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          // Mostrar spinner, ocultar botón
+          submitButton?.classList.add('hidden');
+          loadingSpinner?.classList.remove('hidden');
+          formStatus?.classList.add('hidden');
+          successMessage?.classList.add('hidden');
+          errorMessage?.classList.add('hidden');
+          
+          // Recopilar datos del formulario
+          const formData = new FormData((form as HTMLFormElement));
+          const formDataObj = Object.fromEntries(formData.entries());
+          
+          try {
+            // Enviar datos a nuestro endpoint de API
+            const response = await fetch('/api/send-discord-message', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formDataObj),
+            });
+            
+            if (response.ok) {
+              // Mostrar mensaje de éxito
+              formStatus?.classList.remove('hidden');
+              successMessage?.classList.remove('hidden');
+              
+              // Limpiar el formulario
+              (form as HTMLFormElement).reset();
+            } else {
+              // Mostrar mensaje de error
+              formStatus?.classList.remove('hidden');
+              errorMessage?.classList.remove('hidden');
+              console.error('Error en la respuesta del servidor');
+            }
+          } catch (error) {
+            // Mostrar mensaje de error
+            formStatus?.classList.remove('hidden');
+            errorMessage?.classList.remove('hidden');
+            console.error('Error al enviar el formulario:', error);
+          } finally {
+            // Ocultar spinner, mostrar botón
+            submitButton?.classList.remove('hidden');
+            loadingSpinner?.classList.add('hidden');
+          }
+        });
+      }
+    });
+  </script>
